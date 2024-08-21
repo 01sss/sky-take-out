@@ -1,0 +1,22 @@
+Day01:
+    主要是搭建后端开发环境以及git的配置，了解swagger的作用以及注解的使用
+
+Day02:
+    员工管理以及分类管理的实现
+        包括：
+            1.新增员工
+                a.使用常量类来对类似与账号状态、默认密码等常量进行管理，便于后期维护
+                b.流程：通过employeeDTO封装数据，然后将数据传给employeeService，
+                       再到employeeServiceImpl类中将employeeDTO中存在的属性拷贝给employee对象，
+                       将employee中其他的属性进行设置，最后调用employeeMapper中的inset语句来将其插入到数据库里。
+                c.逻辑：前端传来的json格式的数据 -> controller层 -> 赋值给DTO对象 -> 保存到service层中 -> 在serviceImpl中将数据赋值给employee对象
+                       未赋值的属性进行手动设置 -> mapper层使用@insert()注解写sql语句将数据写入到数据库中
+                d.功能测试：通过接口文档测试(主要)
+                          通过前后端联调测试
+                e.代码完善： 1).录入的用户名已存在，抛出异常后没有处理 -> 获取SQL异常信息 -> 返回信息提示
+                           2).新增员工时，创建人id和修改人id设置为了固定值 -> 从token中获取当前登录员工id -> 使用ThreadLocal将id传到service中(重要技术点)
+
+            2.员工分页查询
+            3.启用禁用员工账号
+            4.编辑员工
+            5.导入分类模块功能代码(以及给了现成代码)
