@@ -32,4 +32,10 @@ public interface EmployeeMapper {
      * 由于使用了pagehelper来帮助动态拼接sql，因此需要在配置文件中写sql语句
      */
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+
+    /**
+     * 根据主键动态修改属性
+     * @param employee
+     */
+    void update(Employee employee);
 }
