@@ -30,3 +30,20 @@ Day03:
             技术点：枚举、注解、AOP、反射
 
             公共字段由切片类统一赋值,不需要在service实现类中手动赋值了
+            核心思想：自定义注解@AutoFill用于标识哪些方法需要进行公共字段自动填充 ——> 自定义切面类AutoFillAspect,统一拦截加入了AutoFill注解的方法
+                     ——> 在自定义的切面类AutoFillAspect中通过反射为公共字段赋值 ——> 在Mapper的方法上加入AutoFill注解用于标识 (标识之后对应的serviceImpl中的赋值代码可以注释掉了)
+
+    2.新增菜品
+        业务规则：
+            a.菜品名称必须是唯一的
+            b.菜品必须属于某个分类下，不能单独存在
+            c.新增菜品时可以根据情况选择菜品的口味
+            d.每个菜品必须对应一张图片
+        使用阿里云oss来存储菜品图片
+        在application.yml中加入如下配置
+          alioss:
+            endpoint: ${sky.alioss.endpoint}
+            access-key-id: ${sky.alioss.access-key-id}
+            access-key-secret: ${sky.alioss.access-key-secret}
+            bucket-name: ${sky.alioss.bucket-name}
+          注意：endpoint 和 bucket-name中的横杠和.(找了半个多小时  FK all！！！)

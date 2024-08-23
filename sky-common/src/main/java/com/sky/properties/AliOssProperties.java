@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 @ConfigurationProperties(prefix = "sky.alioss")
 @Data
-public class AliOssProperties {
+public class AliOssProperties { // 配置属性类
 
     private String endpoint;
     private String accessKeyId;
