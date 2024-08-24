@@ -10,6 +10,6 @@ sky:
   # 开发文件上传接口
   alioss:
     endpoint: oss-cn-beijing.aliyuncs.com
-    access-key-id: LTAI5tEJ4BgN1hiqAkn8V65Z
-    access-key-secret: OxIXLWDzj8qLYMHcrjPUnGybw1oZI5
+    access-key-id: 
+    access-key-secret: 
     bucket-name: java-study-sky-take-out2024
