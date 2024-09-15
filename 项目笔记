@@ -56,3 +56,11 @@ Day03:
 
     由于对菜品进行新增、修改、删除、起售、停售等操作时，由于操作的是数据库，需要对redis的缓存进行清除，保证数据库和redis的一致性
 
+
+    缓存套餐实现思路：
+        1.导入SpringCache和Redis相关maven坐标
+        2.在启动类上加入@EnableCaching注解，开启缓存功能
+        3.在用户端接口SetmealController的list方法上加入@Cacheable注解
+        4.在管理端接口SetmealController的save、delete、update、startOrStop等方法上加入CacheEvict注解
+
+
