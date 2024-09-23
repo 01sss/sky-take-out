@@ -65,3 +65,14 @@ Day03:
         4.在管理端接口SetmealController的save、delete、update、startOrStop等方法上加入CacheEvict注解
 
 
+    来单提醒实现思路：
+        1.通过WebSocket实现管理端和服务端保持长连接状态
+        2.当客户支付后，调用WebSocket的相关API实现服务端向客户端推送消息
+        3.客户端浏览器解析服务端推送的消息，判断是来单提醒还是客户催单，进行相应的消息提示和语音播报
+        4.约定服务端发送给客户端浏览器的数据格式为JSON，字段包括type, orderId, content
+            - type为消息类型：1为来单提醒，2为客户催单
+            - orderId为订单id
+            - content为消息内容
+
+
+
