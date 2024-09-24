@@ -2,7 +2,7 @@ package com.sky.controller.admin;
 
 import com.sky.result.Result;
 import com.sky.service.ReportService;
-import com.sky.vo.TurnoverReportVO;
+import com.sky.vo.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
@@ -45,6 +45,47 @@ public class ReportController {
         return Result.success(turnoverReportVO);
     }
 
+
+    /**
+     * 统计用户人数
+     * @param begin
+     * @param end
+     * @return
+     */
+    @GetMapping("/userStatistics")
+    @ApiOperation("用户人数统计")
+    public Result<UserReportVO> userStatistics(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+        log.info("用户人数统计：{},{}", begin, end);
+        UserReportVO userReportVO = reportService.getUserStatistics(begin, end);
+
+        return Result.success(userReportVO);
+    }
+
+
+    @GetMapping("/ordersStatistics")
+    @ApiOperation("订单统计")
+    public Result<OrderReportVO> ordersStatistics(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+        log.info("订单统计：{},{}", begin, end);
+        OrderReportVO OrderReportVO = reportService.getOrdersStatistics(begin, end);
+
+        return Result.success(OrderReportVO);
+    }
+
+
+    @GetMapping("/top10")
+    @ApiOperation("销量排名前十菜品统计")
+    public Result<SalesTop10ReportVO> top10(
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate begin,
+            @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate end){
+        log.info("销量排名前十菜品数据：{},{}",begin, end);
+        SalesTop10ReportVO salesTop10ReportVO = reportService.getSalesTop10(begin, end);
+
+        return Result.success(salesTop10ReportVO);
+    }
 
 
 }
