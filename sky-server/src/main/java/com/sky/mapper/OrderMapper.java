@@ -6,6 +6,7 @@ import com.sky.entity.Orders;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -59,10 +60,15 @@ public interface OrderMapper {
     @Select("select count(id) from orders where status = #{status}")
     Integer countStatus(Integer stastus);
 
-
+    /**
+     * 根据订单状态和时间查询订单
+     * @param status
+     * @param orderTime
+     * @return
+     */
     @Select("select * from orders where status = #{status} and order_time < #{orderTime}")
     List<Orders> getByStatusAndOrderTimeLT(Integer status, LocalDateTime orderTime);
 
-
-
+    @Select("select sum(amount) from orders where order_time > #{beginTime} and order_time < #{endTime} and status = #{status}")
+    Double getTurnover(Integer status,LocalDateTime beginTime,LocalDateTime endTime);
 }
