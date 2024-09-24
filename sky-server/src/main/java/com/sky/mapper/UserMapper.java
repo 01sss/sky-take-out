@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 /**
  * @author: Tan
@@ -54,5 +55,10 @@ public interface UserMapper {
     Integer getTotalUserByTime(LocalDateTime endTime);
 
 
-
+    /**
+     * 计算新增用户数
+     * @param map
+     * @return
+     */
+    Integer countByMap(Map map);
 }
