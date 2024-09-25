@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 
 /**
@@ -64,6 +65,12 @@ public class ReportController {
     }
 
 
+    /**
+     * 订单统计
+     * @param begin
+     * @param end
+     * @return
+     */
     @GetMapping("/ordersStatistics")
     @ApiOperation("订单统计")
     public Result<OrderReportVO> ordersStatistics(
@@ -76,6 +83,12 @@ public class ReportController {
     }
 
 
+    /**
+     * 销量排名前十菜品统计
+     * @param begin
+     * @param end
+     * @return
+     */
     @GetMapping("/top10")
     @ApiOperation("销量排名前十菜品统计")
     public Result<SalesTop10ReportVO> top10(
@@ -87,5 +100,16 @@ public class ReportController {
         return Result.success(salesTop10ReportVO);
     }
 
+
+    /**
+     * 导出运营数据报表
+     * @param response
+     */
+    @GetMapping("/export")
+    @ApiOperation("导出运营数据报表(Excel)")
+    public void export(HttpServletResponse response){
+        reportService.exportBusinessData(response);
+
+    }
 
 }
